@@ -1,12 +1,13 @@
-<html>
-    <head>
-        <title>Minha lista de carros</title>
-    </head>
-    <body>
-        {% block content %}
-            {% for car in cars %}
-                <h3>{{ car.brand }} - {{ car.model }}</h3>
-            {% endfor %}
-        {% endblock content %}
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form method="GET" action="{% url 'cars_list' %}">
+        <input type="text" name="search" placeholder="Buscar carro...">
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% for car in cars %}
+        <h3>{{ car.brand }} - {{ car.model }}</h3>
+    {% endfor %}
+{% endblock content %}
