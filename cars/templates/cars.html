@@ -7,7 +7,17 @@
         <button type="submit">Buscar</button>
     </form>
 
-    {% for car in cars %}
-        <h3>{{ car.brand }} - {{ car.model }}</h3>
-    {% endfor %}
+    {% if cars %}
+        {% for car in cars %}
+            <a href="{% url 'car_detail' pk=car.pk %}">
+                <div class="card">
+                    <img src="{{ car.photo.url }}" alt="{{ car.model}} - {{ car.brand }}">
+                    <h2>{{ car.brand }} - {{ car.model}}</h2>
+                    <p>{{ car.factory_year}} - {{ car.value}}</p>   
+                </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum carro encontrado.</p>
+    {% endif %}
 {% endblock content %}
